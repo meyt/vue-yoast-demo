@@ -1,6 +1,6 @@
 # vue-yoast-demo
 
-> A demo for vue-yoast
+> A demo for vue-yoast [Online](https://meyt.github.io/vue-yoast-demo/)
 
 ## Build Setup
 
