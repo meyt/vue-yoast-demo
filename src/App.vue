@@ -1,0 +1,141 @@
+<template>
+  <div id="app" >
+    <b-container>
+      <b-row>
+        <b-col sm="12">
+          <h1>Vue YoastSEO + Bootstrap Demo <small><a href="https://github.com/meyt/vue-yoast-bootstrap"><></a></small></h1>
+        </b-col>
+        <b-col >
+          <b-card class="mb-2">
+            <b-form-group label="Meta Title">
+              <b-form-input v-model="metaTitle" />
+            </b-form-group>
+
+            <b-form-group label="Meta Description">
+              <b-form-textarea v-model="metaDescription" />
+            </b-form-group>
+
+            <b-form-group label="Description">
+              <b-form-textarea v-model="description" />
+            </b-form-group>
+
+            <b-form-group label="Locale">
+              <b-form-select v-model="locale" :options="localeOptions" class="mb-3" size="sm" />
+            </b-form-group>
+          </b-card>
+
+          <b-card header="Snippet Preivew" class="mb-2">
+            <snippet-preview 
+              :title="metaTitle" 
+              :description="metaDescription" 
+              :url="url"
+              baseUrl="https://my-site.com/"
+              @update:titleWidth="(value) => titleWidth = value"
+              @update:titleLengthPercent="(value) => titleLengthPercent = value"
+              @update:descriptionLengthPercent="(value) => descriptionLengthPercent = value" />
+          </b-card>
+    
+          <b-card header="Content Assessor" class="mb-2">
+            <content-assessor 
+              :title="metaTitle" 
+              :titleWidth="titleWidth"
+              :description="metaDescription" 
+              :url="url" 
+              :text="description" 
+              :locale="locale" 
+              :translations="translations"
+              :resultFilter="assessorResultFilter" />
+          </b-card>
+
+          <b-card header="SEO Assessor" class="mb-2" no-body>
+            <b-tabs card>
+              <b-tab :title="'FocusKeyword ' + (index + 1)" v-for="focusKeyword, index in focusKeywords" :key="index">
+                <b-form-group label="Focus Keyword">
+                  <b-form-textarea v-model="focusKeywords[index]" />
+                </b-form-group>
+
+                <seo-assessor 
+                  :keyword="focusKeyword" 
+                  :title="metaTitle" 
+                  :description="metaDescription" 
+                  :url="url" 
+                  :text="description" 
+                  :locale="locale" 
+                  :translations="translations"
+                  :resultFilter="assessorResultFilter" />
+              </b-tab>
+            </b-tabs>
+          </b-card>
+          
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
+</template>
+
+<script>
+  import ContentAssessor from 'vue-yoast-bootstrap/src/components/ContentAssessor'
+  import SeoAssessor from 'vue-yoast-bootstrap/src/components/SeoAssessor'
+  import SnippetPreivew from 'vue-yoast-bootstrap/src/components/SnippetPreview'
+  import YoastSeoFaIr from './languages/fa_IR.json'
+  export default {
+    name: 'App',
+    components: {
+      ContentAssessor,
+      SeoAssessor,
+      'snippet-preview': SnippetPreivew
+    },
+    data () {
+      return {
+        focusKeywords: [
+          'One',
+          'Amazing',
+          'Keyword'
+        ],
+        metaTitle: 'My Amazing Title',
+        metaDescription: 'The short description',
+        url: 'page/1',
+        description: '<h2>Here is subtitle!</h2> and some contents in HTML',
+        titleWidth: 0,
+        titleLengthPercent: 0,
+        descriptionLengthPercent: 0,
+        translations: null,
+        locale: 'en_US',
+        localeOptions: [
+          {
+            text: 'en_US',
+            value: 'en_US'
+          },
+          {
+            text: 'fa_IR',
+            value: 'fa_IR'
+          }
+        ]
+      }
+    },
+    watch: {
+      locale (newVal) {
+        if (newVal === 'fa_IR') {
+          this.translations = YoastSeoFaIr
+        } else {
+          this.translations = null
+        }
+      }
+    },
+    methods: {
+      assessorResultFilter (value) {
+        return value
+      }
+    }
+  }
+</script>
+
+<style>
+#app {
+  background-color: #eee;
+}
+h1{
+  padding: 10px;
+  font-size: 2em;
+}
+</style>
