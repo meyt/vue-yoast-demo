@@ -24,7 +24,7 @@
             </b-form-group>
           </b-card>
 
-          <b-card header="Snippet Preivew" class="mb-2">
+          <b-card header="Snippet Preview" class="mb-2">
             <snippet-preview 
               :title="metaTitle" 
               :description="metaDescription" 
@@ -76,14 +76,14 @@
 <script>
   import ContentAssessor from 'vue-yoast-bootstrap/src/components/ContentAssessor'
   import SeoAssessor from 'vue-yoast-bootstrap/src/components/SeoAssessor'
-  import SnippetPreivew from 'vue-yoast-bootstrap/src/components/SnippetPreview'
+  import SnippetPreview from 'vue-yoast-bootstrap/src/components/SnippetPreview'
   import YoastSeoFaIr from './languages/fa_IR.json'
   export default {
     name: 'App',
     components: {
       ContentAssessor,
       SeoAssessor,
-      'snippet-preview': SnippetPreivew
+      SnippetPreview
     },
     data () {
       return {
