@@ -57,6 +57,7 @@
                 <seo-assessor 
                   :keyword="focusKeyword" 
                   :title="metaTitle" 
+                  :titleWidth="titleWidth"
                   :description="metaDescription" 
                   :url="url" 
                   :text="description" 
