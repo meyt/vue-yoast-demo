@@ -3,7 +3,12 @@
     <b-container>
       <b-row>
         <b-col sm="12">
-          <h1>Vue YoastSEO + Bootstrap Demo <small><a href="https://github.com/meyt/vue-yoast-bootstrap"><></a></small></h1>
+          <h1>
+            Vue YoastSEO + Bootstrap Demo
+            <small>
+              <a href="https://github.com/meyt/vue-yoast-bootstrap">&lt;&gt;</a>
+            </small>
+          </h1>
         </b-col>
         <b-col >
           <b-card class="mb-2">
@@ -25,49 +30,53 @@
           </b-card>
 
           <b-card header="Snippet Preview" class="mb-2">
-            <snippet-preview 
-              :title="metaTitle" 
-              :description="metaDescription" 
+            <snippet-preview
+              :title="metaTitle"
+              :description="metaDescription"
               :url="url"
               baseUrl="https://my-site.com/"
               @update:titleWidth="(value) => titleWidth = value"
               @update:titleLengthPercent="(value) => titleLengthPercent = value"
               @update:descriptionLengthPercent="(value) => descriptionLengthPercent = value" />
           </b-card>
-    
+
           <b-card header="Content Assessor" class="mb-2">
-            <content-assessor 
-              :title="metaTitle" 
+            <content-assessor
+              :title="metaTitle"
               :titleWidth="titleWidth"
-              :description="metaDescription" 
-              :url="url" 
-              :text="description" 
-              :locale="locale" 
+              :description="metaDescription"
+              :url="url"
+              :text="description"
+              :locale="locale"
               :translations="translations"
               :resultFilter="assessorResultFilter" />
           </b-card>
 
           <b-card header="SEO Assessor" class="mb-2" no-body>
             <b-tabs card>
-              <b-tab :title="'FocusKeyword ' + (index + 1)" v-for="focusKeyword, index in focusKeywords" :key="index">
+              <b-tab
+                v-for="(focusKeyword, index) in focusKeywords"
+                :key="index"
+                :title="'FocusKeyword ' + (index + 1)"
+              >
                 <b-form-group label="Focus Keyword">
                   <b-form-textarea v-model="focusKeywords[index]" />
                 </b-form-group>
 
-                <seo-assessor 
-                  :keyword="focusKeyword" 
-                  :title="metaTitle" 
+                <seo-assessor
+                  :keyword="focusKeyword"
+                  :title="metaTitle"
                   :titleWidth="titleWidth"
-                  :description="metaDescription" 
-                  :url="url" 
-                  :text="description" 
-                  :locale="locale" 
+                  :description="metaDescription"
+                  :url="url"
+                  :text="description"
+                  :locale="locale"
                   :translations="translations"
                   :resultFilter="assessorResultFilter" />
               </b-tab>
             </b-tabs>
           </b-card>
-          
+
         </b-col>
       </b-row>
     </b-container>
