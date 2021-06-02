@@ -1,5 +1,7 @@
 # vue-yoast-demo
 
+### Merged into https://github.com/meyt/vue-yoast/tree/master/demo
+
 > [Live](https://meyt.github.io/vue-yoast-demo/) demo for [vue-yoast](https://github.com/meyt/vue-yoast) + [vue-yoast-bootstrap](https://github.com/meyt/vue-yoast-bootstrap)
 
 ## Build Setup
